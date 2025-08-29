@@ -3,90 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure Help Guide</title>
+  <title>Azure Cloud Help Guide</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f3f4f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #2563eb;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
     }
     .container {
-      max-width: 600px;
+      max-width: 900px;
+      margin: 20px auto;
       background: #fff;
       padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     img {
       width: 100%;
-      height: 250px;
+      height: 300px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 8px;
     }
-    h1 {
+    h2 {
       color: #2563eb;
-      margin: 20px 0 10px;
-    }
-    p {
-      color: #444;
-      line-height: 1.6;
+      margin-top: 20px;
     }
     #countdown {
       font-size: 18px;
       font-weight: bold;
-      color: #333;
+      color: #555;
       margin-top: 20px;
+      text-align: center;
     }
     #telegram-link {
       display: none;
-      margin-top: 20px;
+      margin: 20px auto;
       padding: 12px 20px;
       background: #2563eb;
       color: #fff;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      text-align: center;
+      display: block;
+      width: max-content;
     }
     #telegram-link:hover {
       background: #1d4ed8;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #f3f4f6;
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <h1>Azure Help Guide</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Guides</a>
+      <a href="#">Resources</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
   <div class="container">
     <!-- Random Image -->
-    <img id="randomImage" src="" alt="Random Azure Image">
+    <img id="randomImage" src="" alt="Azure Cloud">
 
-    <!-- Title -->
-    <h1>Welcome to Azure Help Guide</h1>
-
-    <!-- Content -->
+    <!-- Intro -->
+    <h2>Getting Started with Azure</h2>
     <p>
-      Learn essential tips, tricks, and guides for Microsoft Azure.  
-      Whether you’re new to cloud computing or already an expert,  
-      this space provides the right resources to boost your journey.
+      Microsoft Azure is one of the leading cloud computing platforms. 
+      It provides services ranging from virtual machines, databases, 
+      networking, analytics, and AI solutions. This guide introduces 
+      beginners to the basics of cloud computing with Azure.
     </p>
 
-    <!-- Countdown -->
-    <div id="countdown">Please wait... 10 seconds</div>
+    <!-- Benefits -->
+    <h2>Why Choose Azure?</h2>
+    <ul>
+      <li>✔ Scalable cloud infrastructure</li>
+      <li>✔ Cost-effective pricing</li>
+      <li>✔ Enterprise-grade security</li>
+      <li>✔ Wide range of services & tools</li>
+    </ul>
 
-    <!-- Telegram Link -->
+    <!-- More Content -->
+    <h2>Popular Azure Services</h2>
+    <p>
+      Some of the most widely used Azure services include:
+      <b>Azure Virtual Machines</b>, <b>App Services</b>, <b>SQL Database</b>, 
+      <b>Cosmos DB</b>, and <b>Azure Functions</b>. 
+      These allow developers and businesses to deploy apps quickly and efficiently.
+    </p>
+
+    <!-- Hidden Link Section -->
+    <h2>Download Full Azure Guide</h2>
+    <p>
+      For advanced tutorials, best practices, and insider tips, 
+      you can download our complete Azure Help Guide (PDF). 
+      The link will be available after a short wait.
+    </p>
+
+    <!-- Countdown + Link -->
+    <div id="countdown">Preparing your download... Please wait 10 seconds</div>
     <a id="telegram-link" href="https://t.me/YourTelegramGroupLink" target="_blank">
-      Join Our Telegram Group 🚀
+      📥 Download Azure Guide
     </a>
   </div>
 
+  <footer>
+    © 2025 Azure Help Community | Resources shared for educational purposes.
+  </footer>
+
   <script>
-    // Random image generator (Unsplash)
+    // Random Image
     document.getElementById("randomImage").src =
-      "https://source.unsplash.com/random/800x400?cloud,technology,azure";
+      "https://source.unsplash.com/random/1200x400?cloud,technology,azure";
 
     // Timer
     let timeLeft = 10;
@@ -95,11 +155,11 @@
 
     const timer = setInterval(() => {
       timeLeft--;
-      countdown.textContent = "Please wait... " + timeLeft + " seconds";
+      countdown.textContent = "Preparing your download... Please wait " + timeLeft + " seconds";
       if (timeLeft <= 0) {
         clearInterval(timer);
         countdown.style.display = "none";
-        telegramLink.style.display = "inline-block";
+        telegramLink.style.display = "block";
       }
     }, 1000);
   </script>
