@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Help Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    h1 {
+      color: #2563eb;
+      margin: 20px 0 10px;
+    }
+    p {
+      color: #444;
+      line-height: 1.6;
+    }
+    #countdown {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 20px;
+    }
+    #telegram-link {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    #telegram-link:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Random Image -->
+    <img id="randomImage" src="" alt="Random Azure Image">
+
+    <!-- Title -->
+    <h1>Welcome to Azure Help Guide</h1>
+
+    <!-- Content -->
+    <p>
+      Learn essential tips, tricks, and guides for Microsoft Azure.  
+      Whether you’re new to cloud computing or already an expert,  
+      this space provides the right resources to boost your journey.
+    </p>
+
+    <!-- Countdown -->
+    <div id="countdown">Please wait... 10 seconds</div>
+
+    <!-- Telegram Link -->
+    <a id="telegram-link" href="https://t.me/YourTelegramGroupLink" target="_blank">
+      Join Our Telegram Group 🚀
+    </a>
+  </div>
+
+  <script>
+    // Random image generator (Unsplash)
+    document.getElementById("randomImage").src =
+      "https://source.unsplash.com/random/800x400?cloud,technology,azure";
+
+    // Timer
+    let timeLeft = 10;
+    const countdown = document.getElementById("countdown");
+    const telegramLink = document.getElementById("telegram-link");
+
+    const timer = setInterval(() => {
+      timeLeft--;
+      countdown.textContent = "Please wait... " + timeLeft + " seconds";
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        countdown.style.display = "none";
+        telegramLink.style.display = "inline-block";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
