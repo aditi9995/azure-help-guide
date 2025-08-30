@@ -155,7 +155,7 @@
 
     const timer = setInterval(() => {
       timeLeft--;
-      countdown.textContent = "Preparing your download... Please wait " + timeLeft + " seconds";
+      countdown.textContent = "Please wait.. Click here to join " + timeLeft + " seconds";
       if (timeLeft <= 0) {
         clearInterval(timer);
         countdown.style.display = "none";
@@ -166,4 +166,5 @@
 
 </body>
 </html>
+
 
