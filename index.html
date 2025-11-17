@@ -19,23 +19,19 @@
       background:var(--bg);
       color:#222;
       line-height:1.5;
-      -webkit-font-smoothing:antialiased;
     }
     header{
       background:var(--brand);
       color:#fff;
       padding:18px 20px;
       text-align:center;
-      position:relative;
     }
     header h1{margin:0;font-size:20px}
     nav{margin-top:8px}
     nav a{color:rgba(255,255,255,0.95);margin:0 8px;text-decoration:none;font-size:13px}
-    .page{
-      max-width:980px;
-      margin:18px auto;
-      padding:18px;
-    }
+
+    .page{max-width:980px;margin:18px auto;padding:18px;}
+
     .card{
       background:var(--card);
       padding:20px;
@@ -43,78 +39,39 @@
       box-shadow:0 6px 18px rgba(12,20,40,0.06);
       margin-bottom:18px;
     }
+
     img.hero{
-      width:100%;
-      height:320px;
-      object-fit:cover;
-      border-radius:8px;
-      display:block;
+      width:100%;height:320px;object-fit:cover;border-radius:8px;display:block;
     }
 
     h2{color:var(--brand);margin-top:12px}
-
     ul{padding-left:20px}
     .muted{color:var(--muted)}
 
-    /* Sticky timer */
     #sticky-timer{
-      position:fixed;
-      top:18px;
-      right:18px;
+      position:fixed;top:18px;right:18px;
       background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
       border:1px solid rgba(37,99,235,0.12);
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 14px;border-radius:999px;
       box-shadow:0 6px 18px rgba(12,20,40,0.08);
-      z-index:9999;
-      font-weight:600;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      min-width:210px;
-    }
-    #sticky-timer small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-
-    .count-s{
-      font-size:18px;
-      color:#0f172a;
-      min-width:70px;
-      text-align:center;
-      font-variant-numeric:tabular-nums;
+      z-index:9999;font-weight:600;display:flex;
+      gap:10px;align-items:center;min-width:210px;
     }
 
-    /* CTA button */
-    #cta-wrap{
-      text-align:center;
-      margin-top:18px;
-    }
+    .count-s{font-size:18px;color:#0f172a;min-width:70px;text-align:center;font-variant-numeric:tabular-nums;}
+
+    #cta-wrap{text-align:center;margin-top:18px;}
     #cta{
-      background:var(--brand);
-      color:white;
-      padding:12px 18px;
-      border-radius:8px;
-      text-decoration:none;
-      display:none;
-      font-weight:700;
-      font-size:15px;
-      border:0;
-      cursor:pointer;
+      background:var(--brand);color:white;padding:12px 18px;
+      border-radius:8px;text-decoration:none;display:inline-block;
+      font-weight:700;font-size:15px;border:0;cursor:pointer;
     }
 
-    footer{
-      margin-top:24px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-      padding:18px 0;
-    }
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:18px 0;margin-top:24px;}
 
-    @media (max-width:520px){
-      #sticky-timer{right:10px;left:10px;top:auto;bottom:14px;justify-content:space-between}
-    }
+    @media(max-width:520px){#sticky-timer{right:10px;left:10px;top:auto;bottom:14px;}}
   </style>
 </head>
-
 <body>
   <header>
     <h1>Azure Help Guide — (wait 10s to unlock)</h1>
@@ -126,11 +83,10 @@
     </nav>
   </header>
 
-  <!-- Sticky timer -->
-  <div id="sticky-timer" role="status" aria-live="polite">
-    <div style="text-align:left">
+  <div id="sticky-timer">
+    <div>
       <small>If you're serious about cracking the exam</small>
-      <div style="font-size:12px;color:var(--muted)">Wait for the button to appear</div>
+      <div class="muted" style="font-size:12px">Wait for the button to appear</div>
     </div>
     <div style="margin-left:auto;text-align:right">
       <div class="count-s" id="countDisplay">10.000s</div>
@@ -140,89 +96,105 @@
 
   <main class="page">
     <div class="card">
-      <img class="hero" id="randomImage" src="https://github.com/aditi9995/azure-help-guide/blob/main/azure%20exam.png" alt="Azure cloud">
-      <h2>Getting Started with Azure</h2>
-      <p>
-        Microsoft Azure is a leading cloud platform with services for compute, storage, databases, networking, analytics and AI.
-      </p>
+      
 
-      <h2>Quick study checklist</h2>
+      <h2>Understanding Azure</h2>
+      <p>Azure is Microsoft's enterprise-grade cloud platform offering more than 200 services. It enables businesses to build, deploy, and manage applications globally with the help of a strong infrastructure of regions and availability zones.</p>
+
+      <p>Azure is known for its powerful hybrid-cloud capabilities, strong security posture, seamless integration with AI tools, and deep support for DevOps automation using GitHub Actions, ARM, Bicep, and Terraform.</p>
+
+      <p>Whether you're preparing for exams like AZ-900, AZ-104, or AZ-305, mastering Azure's core architecture — including Resource Groups, VNets, compute, storage, and identity — is essential.</p>
+
+      <!-- CTA after 2–3 paragraphs -->
+      <div id="cta-wrap">
+        <a id="cta" href="https://t.me/az104crack" target="_blank">Join & crack your exam</a>
+      </div>
+
+      <h2>Why Azure Skills Matter</h2>
       <ul>
-        <li>Understand core cloud concepts</li>
-        <li>Hands-on labs</li>
-        <li>Microsoft Learn modules</li>
-        <li>Practice tests</li>
+        <li>Most enterprises trust Azure for secure cloud migration.</li>
+        <li>Azure offers global scalability with 60+ regions.</li>
+        <li>Deep integration with Microsoft 365, Power Platform, and AI tools.</li>
+        <li>High demand for certified cloud administrators and engineers.</li>
       </ul>
 
-      <h2>Download full Azure Guide</h2>
-      <p>
-        The download / join link unlocks after a short wait to confirm intent.
-      </p>
+      <h2>Essential Azure Services</h2>
+      <ul>
+        <li><strong>Compute:</strong> VMs, App Service, AKS, Azure Functions</li>
+        <li><strong>Storage:</strong> Blob, Files, Tables, Queues</li>
+        <li><strong>Networking:</strong> VNets, NSGs, Load Balancers, Azure Firewall</li>
+        <li><strong>Security:</strong> Entra ID (Azure AD), RBAC, Policies, Defender for Cloud</li>
+      </ul>
 
-      <div id="timerArea">
-        <div id="countdownText" class="muted" style="text-align:center;margin-top:8px;">
-          Preparing download... please wait <strong id="visibleSeconds">10</strong> seconds
-        </div>
+      <h2>Azure Governance & Management</h2>
+      <p>Azure provides powerful governance tools like Management Groups, Blueprints, Policies, and Cost Management that help organizations maintain compliance and optimize cloud spend. These tools are essential for enterprise-scale deployments.</p>
 
-        <!-- CTA -->
-        <div id="cta-wrap">
-          <a id="cta" href="https://t.me/az104crack" target="_blank" rel="noopener noreferrer">Join & crack your exam</a>
-        </div>
-      </div>
+      <h2>Azure DevOps & Automation</h2>
+      <p>Automation in Azure can be achieved through ARM templates, Bicep, Terraform, and GitHub Actions. Azure DevOps pipelines allow continuous integration and delivery, ensuring faster and more reliable application deployments.</p>
+
+      <h2>Azure AI & Machine Learning</h2>
+      <p>Azure AI services such as Cognitive Services, OpenAI integrations, and Azure Machine Learning empower developers to build intelligent applications with minimal setup. These tools significantly speed up model training and deployment.</p>
+          <h2>Azure Certification Exams Overview</h2>
+      <p>Microsoft Azure certifications are structured into Fundamental, Associate, and Expert levels. These exams validate your real-world cloud skills across administration, architecture, security, data, AI, and DevOps.</p>
+
+      <h2>Fundamental Level Exams</h2>
+      <ul>
+        <li><strong>AZ-900 — Azure Fundamentals:</strong> Covers cloud concepts, service models, basic Azure resources, identity, governance, and pricing.</li>
+        <li><strong>AI-900 — Azure AI Fundamentals:</strong> Introduces machine learning, AI workloads, and responsible AI concepts.</li>
+        <li><strong>DP-900 — Data Fundamentals:</strong> Focuses on relational, non-relational, analytics, and Azure data services.</li>
+      </ul>
+
+      <h2>Associate Level Exams</h2>
+      <ul>
+        <li><strong>AZ-104 — Azure Administrator:</strong> Core admin skills including identity, networking, compute, storage, and governance.</li>
+        <li><strong>AZ-204 — Azure Developer:</strong> Building cloud apps, integrating with services, using SDKs, and securing solutions.</li>
+        <li><strong>DP-203 — Data Engineer:</strong> Data integration, transformation, Synapse, Data Factory, Databricks.</li>
+        <li><strong>AZ-500 — Security Engineer:</strong> Identity security, governance, network protection, threat protection, and encryption.</li>
+      </ul>
+
+      <h2>Expert Level Exams</h2>
+      <ul>
+        <li><strong>AZ-305 — Solutions Architect Expert:</strong> Designing compute, storage, networking, identity, migration, and governance solutions.</li>
+        <li><strong>AZ-400 — DevOps Engineer Expert:</strong> CI/CD, automation, GitHub Actions, pipelines, monitoring, SRE practices.</li>
+      </ul>
+
+      <h2>Tips to Crack Any Azure Exam</h2>
+      <ul>
+        <li>Understand the official Microsoft documentation and exam outline.</li>
+        <li>Practice with Azure Portal, CLI, and real-world scenarios.</li>
+        <li>Use sandboxes, labs, and free-tier resources to gain hands-on skills.</li>
+        <li>Review case studies, architecture diagrams, and practice tests.</li>
+      </ul>
     </div>
   </main>
 
-  <footer>
-    © 2025 Azure Help Community | Resources shared for educational purposes.
-  </footer>
+  <footer>© 2025 Azure Help Community</footer>
 
-  <!-- ===================== -->
-  <!--   TIMER SCRIPT ONLY   -->
-  <!-- ===================== -->
   <script>
     const WAIT_SECONDS = 10;
-    const SHOW_CTA_AFTER_MS = WAIT_SECONDS * 1000;
-    let remaining = SHOW_CTA_AFTER_MS;
+    let remaining = WAIT_SECONDS * 1000;
 
     const countDisplay = document.getElementById('countDisplay');
-    const visibleSeconds = document.getElementById('visibleSeconds');
-    const countdownText = document.getElementById('countdownText');
     const cta = document.getElementById('cta');
 
-    document.getElementById("randomImage").src =
-      "https://source.unsplash.com/featured/1200x400?azure,cloud,technology";
-
     let lastTick = performance.now();
-    const interval = 50;
-
     const ticker = setInterval(() => {
       const now = performance.now();
       const delta = now - lastTick;
       lastTick = now;
       remaining -= delta;
-      if (remaining < 0) remaining = 0;
+      if(remaining < 0) remaining = 0;
 
       const sec = Math.floor(remaining / 1000);
       const ms = Math.floor(remaining % 1000);
-      countDisplay.textContent = sec + "." + String(ms).padStart(3, '0') + "s";
-      visibleSeconds.textContent = Math.ceil(remaining / 1000);
+      countDisplay.textContent = sec + "." + String(ms).padStart(3,'0') + "s";
 
-      countdownText.innerHTML =
-        'Preparing download... please wait <strong>' + Math.ceil(remaining / 1000) + '</strong> seconds';
-
-      if (remaining <= 0) {
+      if(remaining <= 0){
         clearInterval(ticker);
-        enableCTA();
+        cta.style.display = "inline-block";
+        countDisplay.textContent = "Unlocked";
       }
-    }, interval);
-
-    function enableCTA() {
-      cta.style.display = "inline-block";
-      countdownText.style.display = "none";
-      countDisplay.textContent = "Unlocked";
-      cta.focus();
-    }
+    }, 50);
   </script>
 </body>
 </html>
-
