@@ -56,7 +56,7 @@
     ul{padding-left:20px}
     .muted{color:var(--muted)}
 
-    /* Sticky timer: top-right */
+    /* Sticky timer */
     #sticky-timer{
       position:fixed;
       top:18px;
@@ -83,7 +83,7 @@
       font-variant-numeric:tabular-nums;
     }
 
-    /* CTA button (initially hidden) placed at bottom of the main card */
+    /* CTA button */
     #cta-wrap{
       text-align:center;
       margin-top:18px;
@@ -94,27 +94,11 @@
       padding:12px 18px;
       border-radius:8px;
       text-decoration:none;
-      display:inline-block;
+      display:none;
       font-weight:700;
       font-size:15px;
       border:0;
       cursor:pointer;
-    }
-    #cta:disabled{
-      opacity:0.6;
-      cursor:not-allowed;
-    }
-
-    /* Quiz gate styles */
-    .quiz{
-      margin-top:12px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .input{
-      padding:8px 10px;border-radius:8px;border:1px solid #e6eaf0;background:#fff;min-width:240px;
     }
 
     footer{
@@ -125,15 +109,15 @@
       padding:18px 0;
     }
 
-    /* small screens adjustments */
     @media (max-width:520px){
       #sticky-timer{right:10px;left:10px;top:auto;bottom:14px;justify-content:space-between}
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Azure Help Guide — (wait 15s to unlock)</h1>
+    <h1>Azure Help Guide — (wait 10s to unlock)</h1>
     <nav>
       <a href="#">Home</a>
       <a href="#">Guides</a>
@@ -142,97 +126,49 @@
     </nav>
   </header>
 
-  <!-- Sticky timer visible while scrolling -->
+  <!-- Sticky timer -->
   <div id="sticky-timer" role="status" aria-live="polite">
     <div style="text-align:left">
       <small>If you're serious about cracking the exam</small>
       <div style="font-size:12px;color:var(--muted)">Wait for the button to appear</div>
     </div>
     <div style="margin-left:auto;text-align:right">
-      <div class="count-s" id="countDisplay">15.000s</div>
+      <div class="count-s" id="countDisplay">10.000s</div>
       <small class="muted">remaining</small>
     </div>
   </div>
 
   <main class="page">
     <div class="card">
-      <img class="hero" id="randomImage" src="https://source.unsplash.com/random/1200x400?cloud,azure,technology" alt="Azure cloud">
+      <img class="hero" id="randomImage" src="https://source.unsplash.com/featured/1200x400?azure,cloud,technology" alt="Azure cloud">
       <h2>Getting Started with Azure</h2>
       <p>
         Microsoft Azure is a leading cloud platform with services for compute, storage, databases, networking, analytics and AI.
-        This page focuses on practical study steps and resources for Azure certification candidates (example: AZ-104, AZ-900, AZ-305).
       </p>
 
       <h2>Quick study checklist</h2>
       <ul>
-        <li>Understand core cloud concepts (IaaS, PaaS, SaaS)</li>
-        <li>Hands-on labs: deploy a VM, create an App Service, and try Azure Functions</li>
-        <li>Use Microsoft Learn modules and the official exam skills outline</li>
-        <li>Take timed practice tests and review weak topics</li>
+        <li>Understand core cloud concepts</li>
+        <li>Hands-on labs</li>
+        <li>Microsoft Learn modules</li>
+        <li>Practice tests</li>
       </ul>
-
-      <h2>Top recommended resources</h2>
-      <ul>
-        <li>Microsoft Learn — free role-based learning paths</li>
-        <li>Official exam guide & skills outline (from Microsoft docs)</li>
-        <li>Hands-on labs: Azure sandbox or free tier</li>
-        <li>Community study groups, practice exams, and flashcards</li>
-      </ul>
-
-      <h2>Pro tip</h2>
-      <p class="muted">
-        Schedule short, focused daily study periods (25–45 minutes). Do active recall: build a resource in Azure, then explain what you did out loud or write notes.
-      </p>
 
       <h2>Download full Azure Guide</h2>
       <p>
-        For advanced tutorials, detailed checklists, and practice problems you can download our PDF. The download / join link unlocks after a short wait to confirm intent.
+        The download / join link unlocks after a short wait to confirm intent.
       </p>
 
-      <!-- Countdown and gating -->
-      <div id="timerArea" aria-hidden="false">
+      <div id="timerArea">
         <div id="countdownText" class="muted" style="text-align:center;margin-top:8px;">
-          Preparing download... please wait <strong id="visibleSeconds">15</strong> seconds
+          Preparing download... please wait <strong id="visibleSeconds">10</strong> seconds
         </div>
 
-        <!-- Optional small quiz gate — change `enableQuiz` in the script to toggle -->
-        <div id="quizGate" style="text-align:center;margin-top:14px;">
-          <div class="muted">Optional: prove you're serious. Answer to unlock faster:</div>
-          <div class="quiz" role="form" aria-label="quiz">
-            <label for="answerInput" class="muted" style="font-size:14px">What service is best for serverless functions?</label>
-            <input id="answerInput" class="input" placeholder="Type your answer (example: Azure Functions)">
-            <button id="answerBtn" class="input" style="cursor:pointer">Submit</button>
-            <div id="quizMsg" style="font-weight:700;color:var(--muted)"></div>
-          </div>
-        </div>
-
+        <!-- CTA -->
         <div id="cta-wrap">
-          <!-- Hidden until timer + (optional) quiz satisfied -->
-          <a id="cta" href="https://t.me/az104crack" target="_blank" rel="noopener noreferrer" style="display:none">Join & crack your exam</a>
+          <a id="cta" href="https://t.me/az104crack" target="_blank" rel="noopener noreferrer">Join & crack your exam</a>
         </div>
       </div>
-    </div>
-
-    <!-- More helpful sections for exam candidates -->
-    <div class="card">
-      <h2>Exam-specific notes</h2>
-      <h3>AZ-104 (Azure Administrator) — high-level</h3>
-      <ul>
-        <li>Focus: managing identities, governance, compute/networking/storage.</li>
-        <li>Practice: create VMs, implement RBAC, configure NSGs, backups, and monitor resources.</li>
-      </ul>
-      <h3>AZ-900 (Fundamentals)</h3>
-      <ul>
-        <li>Focus: core cloud concepts, basic Azure services, pricing & support.</li>
-      </ul>
-      <p class="muted">Always pair reading with labs — hands-on beats passive reading.</p>
-    </div>
-
-    <div class="card">
-      <h2>Community & Ethics note</h2>
-      <p class="muted">
-        Share responsibly — do not distribute leaked or copyrighted exam content. Use community groups for study help and approved practice tests.
-      </p>
     </div>
   </main>
 
@@ -240,31 +176,25 @@
     © 2025 Azure Help Community | Resources shared for educational purposes.
   </footer>
 
+  <!-- ===================== -->
+  <!--   TIMER SCRIPT ONLY   -->
+  <!-- ===================== -->
   <script>
-    // CONFIG
-    const WAIT_SECONDS = 15;         // how long to wait before allowing CTA
+    const WAIT_SECONDS = 10;
     const SHOW_CTA_AFTER_MS = WAIT_SECONDS * 1000;
-    let remaining = SHOW_CTA_AFTER_MS; // ms
-    let quizEnabled = true; // set false to disable quiz requirement
-    const correctAnswers = ["azure functions","functions","azure function","azurefunctions"]; // acceptable quiz answers
+    let remaining = SHOW_CTA_AFTER_MS;
 
-    // elements
     const countDisplay = document.getElementById('countDisplay');
     const visibleSeconds = document.getElementById('visibleSeconds');
     const countdownText = document.getElementById('countdownText');
     const cta = document.getElementById('cta');
-    const quizGate = document.getElementById('quizGate');
-    const answerInput = document.getElementById('answerInput');
-    const answerBtn = document.getElementById('answerBtn');
-    const quizMsg = document.getElementById('quizMsg');
 
-    // random image (already present) - keep freshness
     document.getElementById("randomImage").src =
       "https://source.unsplash.com/featured/1200x400?azure,cloud,technology";
 
-    // Timer update every 50ms for visible ms precision
     let lastTick = performance.now();
-    const interval = 50; // ms
+    const interval = 50;
+
     const ticker = setInterval(() => {
       const now = performance.now();
       const delta = now - lastTick;
@@ -272,82 +202,26 @@
       remaining -= delta;
       if (remaining < 0) remaining = 0;
 
-      // display seconds.milliseconds
       const sec = Math.floor(remaining / 1000);
       const ms = Math.floor(remaining % 1000);
-      const display = sec + "." + String(ms).padStart(3, '0') + "s";
-      countDisplay.textContent = display;
+      countDisplay.textContent = sec + "." + String(ms).padStart(3, '0') + "s";
       visibleSeconds.textContent = Math.ceil(remaining / 1000);
 
-      // update small countdown text for accessibility
-      countdownText.innerHTML = 'Preparing download... please wait <strong>' + Math.ceil(remaining / 1000) + '</strong> seconds';
+      countdownText.innerHTML =
+        'Preparing download... please wait <strong>' + Math.ceil(remaining / 1000) + '</strong> seconds';
 
-      // when timer hits 0, enable CTA if quiz is satisfied (or not enabled)
       if (remaining <= 0) {
         clearInterval(ticker);
-        tryEnableCTA();
+        enableCTA();
       }
     }, interval);
 
-    // Quiz logic
-    let quizPassed = false;
-    function checkAnswer() {
-      const v = (answerInput.value || "").trim().toLowerCase();
-      if (v.length === 0) {
-        quizMsg.textContent = "Please type an answer.";
-        return;
-      }
-      if (correctAnswers.includes(v)) {
-        quizMsg.style.color = "green";
-        quizMsg.textContent = "Nice! You're serious — link will appear.";
-        quizPassed = true;
-        // Optionally speed up reveal: subtract remaining to 0 (uncomment to enable)
-        // remaining = Math.min(remaining, 500); // quick reveal but still respects wait
-        tryEnableCTA();
-      } else {
-        quizMsg.style.color = "crimson";
-        quizMsg.textContent = "Not quite — try 'Azure Functions' or similar.";
-        quizPassed = false;
-      }
-    }
-
-    answerBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      checkAnswer();
-    });
-    answerInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') { e.preventDefault(); checkAnswer(); }
-    });
-
-    // Enable CTA only when timer done and (if enabled) quiz passed
-    function tryEnableCTA() {
-      if (remaining > 0) return;
-      if (quizEnabled && !quizPassed) {
-        // show gentle prompt to take quiz
-        quizMsg.style.color = "#666";
-        quizMsg.textContent = "Complete the quick check to unlock the join button.";
-        return;
-      }
-      // show button
+    function enableCTA() {
       cta.style.display = "inline-block";
-      // hide countdown area text (optional)
       countdownText.style.display = "none";
-      // update sticky timer to show unlocked
       countDisplay.textContent = "Unlocked";
-      // Optionally add small animation or focus
       cta.focus();
     }
-
-    // Accessibility: keyboard access to CTA when visible
-    cta.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') cta.click();
-    });
-
-    // OPTIONAL: You can make the Telegram link point to a landing that verifies users server-side.
-    // NOTE: Avoid trying to hide links to evade platform policies. Use legitimate gating:
-    //  - make the Telegram channel private and invite users manually
-    //  - require users to fill a form (email or proof) before sending them the invite link
-    //  - use a bot to approve new members
   </script>
 </body>
 </html>
