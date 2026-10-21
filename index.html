@@ -1,94 +1,373 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Azure Cloud Help Guide — Exam Prep</title>
+
   <style>
-    :root{
-      --brand:#2563eb;
-      --bg:#f9fafb;
-      --card:#ffffff;
-      --muted:#666;
-      --radius:10px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:var(--bg);
-      color:#222;
-      line-height:1.5;
-    }
-    header{
-      background:var(--brand);
-      color:#fff;
-      padding:18px 20px;
-      text-align:center;
-    }
-    header h1{margin:0;font-size:20px}
-    nav{margin-top:8px}
-    nav a{color:rgba(255,255,255,0.95);margin:0 8px;text-decoration:none;font-size:13px}
-
-    .page{max-width:980px;margin:18px auto;padding:18px;}
-
-    .card{
-      background:var(--card);
-      padding:20px;
-      border-radius:var(--radius);
-      box-shadow:0 6px 18px rgba(12,20,40,0.06);
-      margin-bottom:18px;
+    :root {
+      --brand: #2563eb;
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --muted: #666;
+      --radius: 12px;
+      --telegram: #0088cc;
     }
 
-    img.hero{
-      width:100%;height:320px;object-fit:cover;border-radius:8px;display:block;
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI",
+                   Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.65;
     }
 
-    h2{color:var(--brand);margin-top:12px}
-    ul{padding-left:20px}
-    .muted{color:var(--muted)}
-
-    #sticky-timer{
-      position:fixed;top:18px;right:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-      border:1px solid rgba(37,99,235,0.12);
-      padding:10px 14px;border-radius:999px;
-      box-shadow:0 6px 18px rgba(12,20,40,0.08);
-      z-index:9999;font-weight:600;display:flex;
-      gap:10px;align-items:center;min-width:210px;
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb, #0f6bce);
+      color: #fff;
+      padding: 22px 16px;
+      text-align: center;
     }
 
-    .count-s{font-size:18px;color:#0f172a;min-width:70px;text-align:center;font-variant-numeric:tabular-nums;}
-
-    #cta-wrap{text-align:center;margin-top:18px;}
-    #cta{
-      background:var(--brand);color:white;padding:12px 18px;
-      border-radius:8px;text-decoration:none;display:inline-block;
-      font-weight:700;font-size:15px;border:0;cursor:pointer;
+    header h1 {
+      margin: 0;
+      font-size: 23px;
     }
 
-    footer{text-align:center;color:var(--muted);font-size:13px;padding:18px 0;margin-top:24px;}
+    nav { margin-top: 10px; }
 
-    @media(max-width:520px){#sticky-timer{right:10px;left:10px;top:auto;bottom:14px;}}
+    nav a {
+      color: #fff;
+      margin: 0 8px;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 980px;
+      margin: 22px auto;
+      padding: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(12, 20, 40, 0.06);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      color: var(--brand);
+      margin-top: 26px;
+    }
+
+    ul { padding-left: 22px; }
+
+    .muted { color: var(--muted); }
+
+    /* Sticky countdown */
+    #sticky-timer {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: #fff;
+      border: 1px solid #bfdbfe;
+      padding: 10px 14px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(12, 20, 40, 0.13);
+      z-index: 9999;
+      font-weight: 600;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      max-width: calc(100vw - 32px);
+    }
+
+    .count-s {
+      font-size: 18px;
+      color: #0f172a;
+      min-width: 78px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Telegram promotion card */
+    #cta-wrap {
+      display: none;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin: 32px 0;
+      padding: 30px 22px;
+      border-radius: 20px;
+      border: 2px solid #60a5fa;
+      background: linear-gradient(135deg, #eff6ff, #ffffff, #dbeafe);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.16);
+    }
+
+    #cta-wrap.unlocked {
+      display: block;
+      animation: revealCard 0.7s ease both;
+    }
+
+    #cta-wrap::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: -105px;
+      right: -65px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.13);
+      pointer-events: none;
+    }
+
+    .join-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      margin-bottom: 10px;
+    }
+
+    .cta-title {
+      color: #102a56;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 850;
+      line-height: 1.25;
+      margin: 4px 0 12px;
+    }
+
+    .cta-description {
+      max-width: 590px;
+      margin: 0 auto 16px;
+      color: #374151;
+      font-size: 15px;
+    }
+
+    .cta-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 18px 0 20px;
+    }
+
+    .benefit {
+      background: #fff;
+      border: 1px solid #bfdbfe;
+      border-radius: 9px;
+      padding: 8px 11px;
+      color: #1e40af;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    /* Animated arrows */
+    .arrow-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+      margin: 12px 0 10px;
+      color: #2563eb;
+    }
+
+    .arrow {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+      animation: pointDown 0.85s infinite alternate;
+    }
+
+    .arrow:nth-child(2) { animation-delay: 0.18s; }
+    .arrow:nth-child(3) { animation-delay: 0.36s; }
+
+    /* Main Telegram button */
+    #cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: min(100%, 390px);
+      min-height: 60px;
+      padding: 15px 22px;
+      border: 2px solid #007ab8;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #08a5ed, #0077c8);
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 850;
+      letter-spacing: 0.25px;
+      box-shadow: 0 7px 0 #075b91, 0 12px 24px rgba(0, 136, 204, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: buttonPulse 1.8s infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    #cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 #075b91, 0 16px 28px rgba(0, 136, 204, 0.32);
+      animation-play-state: paused;
+    }
+
+    #cta:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 #075b91;
+    }
+
+    #cta:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 5px;
+    }
+
+    .telegram-icon {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: #0088cc;
+      font-size: 18px;
+    }
+
+    .cta-note {
+      margin: 17px 0 0;
+      color: #475569;
+      font-size: 13px;
+    }
+
+    .cta-note strong { color: #075985; }
+
+    .unlock-message {
+      display: none;
+      color: #166534;
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 12px;
+    }
+
+    #cta-wrap.unlocked .unlock-message { display: block; }
+
+    #cta-wrap.unlocked .arrow-area { margin-top: 8px; }
+
+    #cta-wrap.unlocked .cta-title { margin-top: 0; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 18px 0;
+      margin-top: 24px;
+    }
+
+    @keyframes pointDown {
+      from { transform: translateY(-2px); opacity: 0.55; }
+      to   { transform: translateY(7px); opacity: 1; }
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 7px 0 #075b91,
+                    0 12px 24px rgba(0, 136, 204, 0.22);
+      }
+      50% {
+        box-shadow: 0 7px 0 #075b91,
+                    0 14px 32px rgba(0, 136, 204, 0.48);
+      }
+    }
+
+    @keyframes revealCard {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 650px) {
+      header { padding: 22px 12px; }
+
+      header h1 { font-size: 19px; }
+
+      nav a { margin: 0 5px; }
+
+      .page { padding: 12px; }
+
+      .card { padding: 18px; }
+
+      #sticky-timer {
+        right: 10px;
+        left: 10px;
+        top: auto;
+        bottom: 12px;
+        justify-content: space-between;
+        padding: 9px 12px;
+      }
+
+      #cta-wrap {
+        padding: 25px 15px;
+        border-radius: 16px;
+      }
+
+      .cta-description { font-size: 14px; }
+
+      .cta-benefits { gap: 7px; }
+
+      .benefit { font-size: 12px; }
+
+      #cta {
+        font-size: 15px;
+        padding: 14px 12px;
+      }
+
+      .arrow-area { gap: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Azure Help Guide — (wait 10s to unlock)</h1>
-    <nav>
+    <h1>Azure Help Guide — Exam Preparation</h1>
+    <nav aria-label="Main navigation">
       <a href="#">Home</a>
-      <a href="#">Guides</a>
-      <a href="#">Resources</a>
-      <a href="#">About</a>
+      <a href="#guides">Guides</a>
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
     </nav>
   </header>
 
-  <div id="sticky-timer">
+  <div id="sticky-timer" role="status" aria-live="polite">
     <div>
-      <small>If you're serious about cracking the exam</small>
-      <div class="muted" style="font-size:12px">Wait for the button to appear</div>
+      <small>If you're serious about cracking your exam</small>
+      <div class="muted" style="font-size:12px" id="timerMessage">
+        Your Telegram invite is unlocking...
+      </div>
     </div>
-    <div style="margin-left:auto;text-align:right">
+    <div style="text-align:right">
       <div class="count-s" id="countDisplay">10.000s</div>
       <small class="muted">remaining</small>
     </div>
@@ -96,105 +375,202 @@
 
   <main class="page">
     <div class="card">
-      
-
       <h2>Understanding Azure</h2>
-      <p>Azure is Microsoft's enterprise-grade cloud platform offering more than 200 services. It enables businesses to build, deploy, and manage applications globally with the help of a strong infrastructure of regions and availability zones.</p>
 
-      <p>Azure is known for its powerful hybrid-cloud capabilities, strong security posture, seamless integration with AI tools, and deep support for DevOps automation using GitHub Actions, ARM, Bicep, and Terraform.</p>
+      <p>
+        Azure is Microsoft's enterprise-grade cloud platform offering a
+        wide range of services. It enables businesses to build, deploy,
+        and manage applications globally with the help of its
+        infrastructure of regions and availability zones.
+      </p>
 
-      <p>Whether you're preparing for exams like AZ-900, AZ-104, or AZ-305, mastering Azure's core architecture — including Resource Groups, VNets, compute, storage, and identity — is essential.</p>
+      <p>
+        Azure is known for its hybrid-cloud capabilities, security,
+        integration with AI tools, and support for DevOps automation
+        using GitHub Actions, ARM, Bicep, and Terraform.
+      </p>
 
-      <!-- CTA after 2–3 paragraphs -->
-      <div id="cta-wrap">
-        <a id="cta" href="https://t.me/az104crack" target="_blank">Join & crack your exam</a>
-      </div>
+      <p>
+        Whether you're preparing for AZ-900, AZ-104, or AZ-305,
+        understanding Azure's core architecture—including resource
+        groups, VNets, compute, storage, and identity—is essential.
+      </p>
 
-      <h2>Why Azure Skills Matter</h2>
+      <!-- Telegram invitation -->
+      <section id="cta-wrap" aria-labelledby="cta-heading">
+        <div class="unlock-message">✓ Your Telegram invitation is ready!</div>
+
+        <div class="join-badge">AZURE EXAM PREPARATION COMMUNITY</div>
+
+        <h2 class="cta-title" id="cta-heading">
+          Preparing for an Azure Certification?
+        </h2>
+
+        <p class="cta-description">
+          Join our Telegram channel for Azure exam preparation updates,
+          practice questions, revision resources, and community support.
+          Take the next step in your certification journey!
+        </p>
+
+        <div class="cta-benefits">
+          <span class="benefit">✓ Exam Practice</span>
+          <span class="benefit">✓ Revision Resources</span>
+          <span class="benefit">✓ Azure Updates</span>
+        </div>
+
+        <div class="arrow-area" aria-hidden="true">
+          <span class="arrow">↓</span>
+          <span class="arrow">↓</span>
+          <span class="arrow">↓</span>
+        </div>
+
+        <a
+          id="cta"
+          href="https://t.me/az104crack"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Telegram and join the Azure exam preparation channel"
+        >
+          <span class="telegram-icon" aria-hidden="true">➤</span>
+          JOIN OUR TELEGRAM CHANNEL
+        </a>
+
+        <p class="cta-note">
+          <strong>Click the blue button above</strong> to open Telegram
+          and visit our channel. Follow the channel's Join prompt to join.
+        </p>
+      </section>
+
+      <h2 id="guides">Why Azure Skills Matter</h2>
       <ul>
-        <li>Most enterprises trust Azure for secure cloud migration.</li>
-        <li>Azure offers global scalability with 60+ regions.</li>
-        <li>Deep integration with Microsoft 365, Power Platform, and AI tools.</li>
-        <li>High demand for certified cloud administrators and engineers.</li>
+        <li>Azure supports enterprise cloud migration and management.</li>
+        <li>Its global infrastructure helps applications scale.</li>
+        <li>It integrates with Microsoft 365, Power Platform, and AI tools.</li>
+        <li>Cloud certifications can help demonstrate relevant technical skills.</li>
       </ul>
 
       <h2>Essential Azure Services</h2>
       <ul>
-        <li><strong>Compute:</strong> VMs, App Service, AKS, Azure Functions</li>
-        <li><strong>Storage:</strong> Blob, Files, Tables, Queues</li>
+        <li><strong>Compute:</strong> Virtual Machines, App Service, AKS, Azure Functions</li>
+        <li><strong>Storage:</strong> Blob Storage, Azure Files, Tables, Queues</li>
         <li><strong>Networking:</strong> VNets, NSGs, Load Balancers, Azure Firewall</li>
-        <li><strong>Security:</strong> Entra ID (Azure AD), RBAC, Policies, Defender for Cloud</li>
+        <li><strong>Security:</strong> Microsoft Entra ID, RBAC, Azure Policy, Defender for Cloud</li>
       </ul>
 
-      <h2>Azure Governance & Management</h2>
-      <p>Azure provides powerful governance tools like Management Groups, Blueprints, Policies, and Cost Management that help organizations maintain compliance and optimize cloud spend. These tools are essential for enterprise-scale deployments.</p>
+      <h2>Azure Governance &amp; Management</h2>
+      <p>
+        Azure provides governance tools such as management groups,
+        Azure Policy, and Cost Management to help organizations
+        manage resources, enforce standards, and control cloud spending.
+      </p>
 
-      <h2>Azure DevOps & Automation</h2>
-      <p>Automation in Azure can be achieved through ARM templates, Bicep, Terraform, and GitHub Actions. Azure DevOps pipelines allow continuous integration and delivery, ensuring faster and more reliable application deployments.</p>
+      <h2>Azure DevOps &amp; Automation</h2>
+      <p>
+        ARM templates, Bicep, Terraform, GitHub Actions, and Azure
+        DevOps pipelines can help automate infrastructure deployment
+        and application delivery.
+      </p>
 
-      <h2>Azure AI & Machine Learning</h2>
-      <p>Azure AI services such as Cognitive Services, OpenAI integrations, and Azure Machine Learning empower developers to build intelligent applications with minimal setup. These tools significantly speed up model training and deployment.</p>
-          <h2>Azure Certification Exams Overview</h2>
-      <p>Microsoft Azure certifications are structured into Fundamental, Associate, and Expert levels. These exams validate your real-world cloud skills across administration, architecture, security, data, AI, and DevOps.</p>
+      <h2>Azure AI &amp; Machine Learning</h2>
+      <p>
+        Azure AI services and Azure Machine Learning help developers
+        build intelligent applications, train and deploy models, and
+        integrate AI capabilities into cloud solutions.
+      </p>
+
+      <h2 id="resources">Azure Certification Exams Overview</h2>
+      <p>
+        Microsoft Azure certifications cover foundational, associate,
+        and expert-level skills across cloud computing, administration,
+        security, data, AI, and DevOps. Check Microsoft's current
+        certification pages for the latest exam requirements.
+      </p>
 
       <h2>Fundamental Level Exams</h2>
       <ul>
-        <li><strong>AZ-900 — Azure Fundamentals:</strong> Covers cloud concepts, service models, basic Azure resources, identity, governance, and pricing.</li>
-        <li><strong>AI-900 — Azure AI Fundamentals:</strong> Introduces machine learning, AI workloads, and responsible AI concepts.</li>
-        <li><strong>DP-900 — Data Fundamentals:</strong> Focuses on relational, non-relational, analytics, and Azure data services.</li>
+        <li><strong>AZ-900 — Azure Fundamentals:</strong> Cloud concepts, Azure services, security, governance, and pricing.</li>
+        <li><strong>AI-900 — Azure AI Fundamentals:</strong> AI workloads, machine learning basics, and responsible AI.</li>
+        <li><strong>DP-900 — Azure Data Fundamentals:</strong> Relational data, non-relational data, analytics, and data services.</li>
       </ul>
 
       <h2>Associate Level Exams</h2>
       <ul>
-        <li><strong>AZ-104 — Azure Administrator:</strong> Core admin skills including identity, networking, compute, storage, and governance.</li>
-        <li><strong>AZ-204 — Azure Developer:</strong> Building cloud apps, integrating with services, using SDKs, and securing solutions.</li>
-        <li><strong>DP-203 — Data Engineer:</strong> Data integration, transformation, Synapse, Data Factory, Databricks.</li>
-        <li><strong>AZ-500 — Security Engineer:</strong> Identity security, governance, network protection, threat protection, and encryption.</li>
+        <li><strong>AZ-104 — Azure Administrator:</strong> Identity, networking, compute, storage, and governance.</li>
+        <li><strong>AZ-204 — Azure Developer:</strong> Cloud application development, SDKs, integrations, and security.</li>
+        <li><strong>DP-203 — Data Engineering:</strong> Check Microsoft's current certification catalog for exam availability and replacements.</li>
+        <li><strong>AZ-500 — Azure Security:</strong> Security operations, identity, networking, and protection concepts; verify current exam status.</li>
       </ul>
 
       <h2>Expert Level Exams</h2>
       <ul>
-        <li><strong>AZ-305 — Solutions Architect Expert:</strong> Designing compute, storage, networking, identity, migration, and governance solutions.</li>
-        <li><strong>AZ-400 — DevOps Engineer Expert:</strong> CI/CD, automation, GitHub Actions, pipelines, monitoring, SRE practices.</li>
+        <li><strong>AZ-305 — Azure Solutions Architect:</strong> Designing infrastructure, identity, storage, networking, and governance.</li>
+        <li><strong>AZ-400 — DevOps Engineer:</strong> CI/CD, automation, monitoring, and delivery practices; verify current certification requirements.</li>
       </ul>
 
-      <h2>Tips to Crack Any Azure Exam</h2>
+      <h2>Tips to Prepare for an Azure Exam</h2>
       <ul>
-        <li>Understand the official Microsoft documentation and exam outline.</li>
+        <li>Study the official Microsoft exam outline and documentation.</li>
         <li>Practice with Azure Portal, CLI, and real-world scenarios.</li>
-        <li>Use sandboxes, labs, and free-tier resources to gain hands-on skills.</li>
-        <li>Review case studies, architecture diagrams, and practice tests.</li>
+        <li>Use available labs and sandbox environments for hands-on learning.</li>
+        <li>Review case studies, architecture diagrams, and practice questions.</li>
       </ul>
+
+      <h2 id="about">About This Guide</h2>
+      <p>
+        This page is an independent Azure exam preparation resource.
+        Always verify exam objectives and certification status through
+        official Microsoft Learn resources.
+      </p>
     </div>
   </main>
 
-  <footer>© 2025 Azure Help Community</footer>
+  <footer>
+    © 2026 Azure Help Community | Independent exam preparation resource
+  </footer>
 
   <script>
-    const WAIT_SECONDS = 10;
-    let remaining = WAIT_SECONDS * 1000;
+    const WAIT_SECONDS = 5;
+    let remaining = WAIT_SECONDS * 500;
 
-    const countDisplay = document.getElementById('countDisplay');
-    const cta = document.getElementById('cta');
+    const countDisplay = document.getElementById("countDisplay");
+    const timerMessage = document.getElementById("timerMessage");
+    const ctaWrap = document.getElementById("cta-wrap");
 
-    let lastTick = performance.now();
-    const ticker = setInterval(() => {
-      const now = performance.now();
-      const delta = now - lastTick;
-      lastTick = now;
-      remaining -= delta;
-      if(remaining < 0) remaining = 0;
+    // Use a monotonic clock so delays between timer callbacks
+    // do not make the countdown run inaccurately.
+    const startTime = performance.now();
 
-      const sec = Math.floor(remaining / 1000);
-      const ms = Math.floor(remaining % 1000);
-      countDisplay.textContent = sec + "." + String(ms).padStart(3,'0') + "s";
+    function updateCountdown() {
+      const elapsed = performance.now() - startTime;
+      remaining = Math.max(0, WAIT_SECONDS * 1000 - elapsed);
 
-      if(remaining <= 0){
-        clearInterval(ticker);
-        cta.style.display = "inline-block";
-        countDisplay.textContent = "Unlocked";
+      if (remaining > 0) {
+        const sec = Math.floor(remaining / 1000);
+        const ms = Math.floor(remaining % 1000);
+
+        countDisplay.textContent =
+          sec + "." + String(ms).padStart(3, "0") + "s";
+
+        requestAnimationFrame(updateCountdown);
+        return;
       }
-    }, 50);
+
+      countDisplay.textContent = "Unlocked";
+      timerMessage.textContent = "Your invitation is ready!";
+
+      ctaWrap.classList.add("unlocked");
+
+      // Bring the newly available invitation into view.
+      ctaWrap.scrollIntoView({
+        behavior: window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches ? "auto" : "smooth",
+        block: "center"
+      });
+    }
+
+    updateCountdown();
   </script>
 </body>
 </html>
+```
